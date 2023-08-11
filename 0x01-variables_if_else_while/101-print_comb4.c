@@ -17,7 +17,7 @@ int main(void)
 				putchar(n);
 				putchar(m);
 				putchar(l);
-				if (!(n == 55 && m == 56 && l == 57))
+				if (!(n == 48 && m == 49 && l == 50))
 				{
 					putchar(',');
 					putchar(' ');
