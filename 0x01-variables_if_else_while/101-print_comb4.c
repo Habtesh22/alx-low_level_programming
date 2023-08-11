@@ -6,19 +6,21 @@
  */
 int main(void)
 {
-	int n, m, l;
+	int d, p, q;
 
-	for (n = 48; n < 58; n++)
+	for (d = '0'; d < '9'; d++)
 	{
-		for (m = 49; m < 58; m++)
+		for (p = d + 1; p <= '9'; p++)
 		{
-			for (l = m + 1; l < 58; l++)
+			for (q = p + 1; q <= '9'; q++)
 			{
-				putchar(n);
-				putchar(m);
-				putchar(l);
-				if (!(n == 48 && m == 49 && l == 50))
+				if ((p != d) != q)
 				{
+					putchar(d);
+					putchar(p);
+					putchar(q);
+					if (d == '7' && p == '8')
+						continue;
 					putchar(',');
 					putchar(' ');
 				}
