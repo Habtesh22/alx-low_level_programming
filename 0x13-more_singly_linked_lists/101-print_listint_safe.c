@@ -33,6 +33,11 @@ size_t print_listint_safe(const listint_t *head)
 
 	return (nodes);
 }
+/**
+ * looped_listint_len - Returns length of a looped list
+ * @head: Pointer to head of looped list
+ * Return: Length of list or 0 if no loop
+ */
 size_t looped_listint_len(const listint_t *head)
 {
 	const listint_t *tortoise, *hare;
