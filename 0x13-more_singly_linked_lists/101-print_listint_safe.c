@@ -23,8 +23,7 @@ size_t print_listint_safe(const listint_t *head)
 			exit(98);
 		}
 
-		Copy
-			printf("[%p] %d\n", (void *)current, current->n);
+		printf("[%p] %d\n", (void *)current, current->n);
 		prev = current;
 		current = current->next;
 		n_nodes++;
