@@ -8,29 +8,28 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t nodes = 0;
-	listint_t *current = (listint_t *)head;
-	listint_t *prev_nodes[64];
-	int index = 0;
+	size_t nodes, index = 0;
 
-	if (head == NULL)
-		return (0);
+	nodes = looped_listint_len(head);
 
-	while (current != NULL)
+	if (nodes == 0)
 	{
-		if (index > 0 && prev_nodes[index - 1] == current)
+		for (; head != NULL; nodes++)
 		{
-			printf("-> [%p] %d\n", (void *)current, current->n);
-			printf(" [LOOP DETECTED]\n");
-			exit(98);
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
+		}
+	}
+	else
+	{
+		for (index = 0; index < nodes; index++)
+		{
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
 		}
 
-		prev_nodes[index++] = current;
-		printf("[%p] %d\n", (void *)current, current->n);
-		current = current->next;
-		nodes++;
+		printf("-> [%p] %d\n", (void *)head, head->n);
 	}
-
 	return (nodes);
 }
 /**
