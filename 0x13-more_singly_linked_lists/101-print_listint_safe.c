@@ -1,44 +1,33 @@
 #include "lists.h"
 
 /**
- * print_listint_safe - Prints a listint_t list safely
+ * print_listint_safe - Prints a list safely handling loops
  * @head: Pointer to head of list
  * Return: Number of nodes
  */
-
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t nodes;
-	listint_t *current;
-	listint_t *targets[64];
+	size_t nodes = 0;
+	listint_t *current = (listint_t *)head;
+	listint_t *prev_nodes[64];
 	int index = 0;
 
-	current = (listint_t *) head;
-	nodes = 0;
-
-	if (current == NULL)
+	if (head == NULL)
 		return (0);
 
-	while (index >= 0 && current != NULL)
+	while (current != NULL)
 	{
-		if (current->next != NULL)
+		if (index > 0 && prev_nodes[index - 1] == current)
 		{
-			targets[index++] = current;
-		}
-		else
-		{
-			targets[index--] = NULL;
+			printf("-> [%p] %d\n", (void *)current, current->n);
+			printf(" [LOOP DETECTED]\n");
+			exit(98);
 		}
 
+		prev_nodes[index++] = current;
 		printf("[%p] %d\n", (void *)current, current->n);
 		current = current->next;
 		nodes++;
-	}
-
-	if (index >= 0)
-	{
-		printf("LOOP DETECTED\n");
-		exit(98);
 	}
 
 	return (nodes);
