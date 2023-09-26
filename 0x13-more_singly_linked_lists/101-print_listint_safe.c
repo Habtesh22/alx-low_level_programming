@@ -1,37 +1,10 @@
 #include "lists.h"
 #include <stdio.h>
 
-/**
- * print_listint_safe - Prints a list safely handling loops
- * @head: Pointer to head of list
- * Return: Number of nodes
- */
-size_t print_listint_safe(const listint_t *head)
-{
-	size_t nodes, index = 0;
+size_t looped_listint_len(const listint_t *head);
+size_t print_listint_safe(const listint_t *head);
 
-	nodes = looped_listint_len(head);
 
-	if (nodes == 0)
-	{
-		for (; head != NULL; nodes++)
-		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
-		}
-	}
-	else
-	{
-		for (index = 0; index < nodes; index++)
-		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
-		}
-
-		printf("-> [%p] %d\n", (void *)head, head->n);
-	}
-	return (nodes);
-}
 /**
  * looped_listint_len - Returns length of a looped list
  * @head: Pointer to head of looped list
@@ -75,4 +48,36 @@ size_t looped_listint_len(const listint_t *head)
 	}
 
 	return (0);
+}
+
+/**
+ * print_listint_safe - Prints a list safely handling loops
+ * @head: Pointer to head of list
+ * Return: Number of nodes
+ */
+size_t print_listint_safe(const listint_t *head)
+{
+	size_t nodes, index = 0;
+
+	nodes = looped_listint_len(head);
+
+	if (nodes == 0)
+	{
+		for (; head != NULL; nodes++)
+		{
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
+		}
+	}
+	else
+	{
+		for (index = 0; index < nodes; index++)
+		{
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
+		}
+
+		printf("-> [%p] %d\n", (void *)head, head->n);
+	}
+	return (nodes);
 }
