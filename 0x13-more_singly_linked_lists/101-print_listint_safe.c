@@ -10,13 +10,15 @@ size_t print_listint_safe(const listint_t *head)
 	size_t n_nodes = 0;
 	listint_t *current = (listint_t *) head;
 	listint_t *prev = NULL;
+	listint_t *temp = NULL;
 
 	if (head == NULL)
 		return (0);
 
-	while (current)
+	while (current != NULL)
 	{
-		if (prev == current->next)
+		tmp = current->next;
+		if (prev == temp)
 		{
 			printf("-> [%p] (%d)\n", (void *)current, current->n);
 			printf("[LOOP DETECTED]\n");
