@@ -32,3 +32,28 @@ size_t print_listint_safe(const listint_t *head)
 
 	return (nodes);
 }
+size_t looped_listint_len(const listint_t *head)
+{
+	size_t count = 0;
+	listint_t *ptr1 = head;
+	listint_t *ptr2 = head;
+
+	if (head == NULL || head->next == NULL)
+		return (0);
+
+	do {
+		ptr2 = ptr2->next;
+	} while (ptr2 && ptr2->next);
+
+	if (ptr2 == NULL)
+		return (0);
+
+	while (ptr1 != ptr2)
+	{
+		ptr1 = ptr1->next;
+		ptr2 = ptr2->next;
+		count++;
+	}
+
+	return (count);
+}
