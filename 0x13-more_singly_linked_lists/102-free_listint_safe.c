@@ -7,41 +7,34 @@
  */
 size_t free_listint_safe(listint_t **h)
 {
-	size_t nodes;
-	listint_t *current;
-	listint_t *tmp;
-	listint_t *targets[64];
+	size_t len = 0;
+	int diff;
+	listint_t *temp;
 
-	int index = 0;
-
-	if (h == NULL || *h == NULL)
+	if (!h || !*h)
 		return (0);
 
-	current = *h;
-	nodes = 0;
-
-	while (index >= 0 && current != NULL)
+	while (*h)
 	{
-		tmp = current->next;
-		if (current->next != NULL)
+		diff = *h - (*h)->next;
+
+		if (diff > 0)
 		{
-			targets[index++] = current;
+			temp = (*h)->next;
+			free(*h);
+			*h = temp;
+			len++;
 		}
 		else
 		{
-			targets[index--] = NULL;
+			free(*h);
+			*h = NULL;
+			len++;
+			break;
 		}
-		free(current);
-		current = tmp;
-		nodes++;
-	}
-
-	if (index > 0)
-	{
-		printf("There was a loop in the list.\n");
 	}
 
 	*h = NULL;
 
-	return (nodes);
+	return (len);
 }
