@@ -12,7 +12,7 @@
 #define BUFFER_SIZE 1024
 int main(int argc, char *argv[])
 {
-	int fd_from, fd_to, bytes_read, bytes_written;
+	int fd_from, fd_to, bytes_read;
 	char buffer[BUFFER_SIZE];
 
 	if (argc != 3)
@@ -37,12 +37,7 @@ int main(int argc, char *argv[])
 
 	while ((bytes_read = read(fd_from, buffer, BUFFER_SIZE)) > 0)
 	{
-		bytes_written = write(fd_to, buffer, bytes_read);
-		if (bytes_written != bytes_read)
-		{
-			dprintf(STDERR_FILENO, "Error: Write failed\n");
-			exit(1);
-		}
+		write(fd_to, buffer, bytes_read);
 	}
 
 	if (bytes_read == -1)
