@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+char *create_buffer(char *file);
+void close_file(int fd);
+
 /**
  * main - Copies the contents of a file to another file.
  * @argc: The number of arguments supplied to the program.
