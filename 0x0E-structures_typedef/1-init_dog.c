@@ -1,21 +1,18 @@
-#include "function_pointers.h"
-#include <stdio.h>
+#include <stdlib.h>
+#include "dog.h"
+
 /**
- * array_iterator - prints each array elem on a newl
- * @array: array
- * @size: how many elem to print
- * @action: pointer to print in regular or hex
- * Return: void
- */
-void array_iterator(int *array, size_t size, void (*action)(int))
+* init_dog - initializes a variable of type struct dog
+* @d: pointer to struct dog to initialize
+* @name: name to initialize
+* @age: age to initialize
+* @owner: owner to initialize
+*/
+void init_dog(struct dog *d, char *name, float age, char *owner)
 {
-	unsigned int i;
-
-	if (array == NULL || action == NULL)
-		return;
-
-	for (i = 0; i < size; i++)
-	{
-		action(array[i]);
-	}
+	if (d == NULL)
+		d = malloc(sizeof(struct dog));
+		d->name = name;
+		d->age = age;
+		d->owner = owner;
 }
